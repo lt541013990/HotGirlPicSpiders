@@ -20,11 +20,17 @@ class HotGirlPicSpider(CrawlSpider):
 
         item['name'] = selector.xpath('//div[@class="content"]/h5/text()').extract()
         item['imgUrl'] = selector.xpath('//div[@class="content-pic"]/a/img/@src').extract()
-        imageName = selector.xpath('/span[@class=page_now]/text()').extract()
-        imageUrl = '/Volumes/D/HotGirlPic/%s/%s.jpg' % (item['name'],imageName)
-        if os.path.exists(imageUrl):
+        imageName = selector.xpath('//span[@class=page_now]/text()').extract()
+        imagePath = '/Volumes/D/HotGirlPic/%s/%s.jpg' % (item['name'],imageName)
+        foldUrl = '/Volumes/D/HotGirlPic/%s' % (item['name'])
+
+        if os.path.exists(foldUrl):
+            pass
+        else:
+            os.makedirs(foldUrl)
+
+        if os.path.exists(imagePath):
             print("图片存在")
         else:
-            urllib.request.urlretrieve(item['imgUrl'], imageUrl)
-            print("目录不存在")
+            urllib.request.urlretrieve(item['imgUrl'], imagePath)
 

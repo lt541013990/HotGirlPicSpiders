@@ -9,6 +9,7 @@ from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 import re
+import os
 
 class HotgirlpicPipeline(ImagesPipeline):
 
@@ -16,9 +17,11 @@ class HotgirlpicPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         item = request.meta['item']
         folder = item['name']
-        folder_strip = strip(folder)
+        folder_strip = folder
         image_guid = request.url.split('/')[-1]
-        filename = u'full/{0}/{1}'.format(folder_strip, image_guid)
+        filename = u'清纯/{0}/{1}'.format(folder_strip, image_guid)
+        if not os.path.exists(filename):
+            print(filename + "是新的")
         return filename
 
     def get_media_requests(self, item, info):

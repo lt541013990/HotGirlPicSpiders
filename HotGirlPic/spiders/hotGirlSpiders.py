@@ -22,13 +22,8 @@ class HotGirlPicSpider(CrawlSpider):
         maxNum = response.xpath("//div[@class='content-page']/span[@class='page-ch']/text()").re(r'共(.*?)页')[0]
 
         selector = Selector(response)
-        # 当前位置
-        # locations = selector.xpath('//div[@class="place"]/a//text()').extract()
-
         item['name'] = selector.xpath('//div[@class="content"]/h5/text()').extract_first(default="N/A")
         item['url'] = response.url
-        # item['imgUrls'].append(selector.xpath('//div[@class="content-pic"]/a/img/@src').extract_first(default="N/A"))
-        # imageName = selector.xpath('//span[@class="page_now"]/text()').extract_first(default="N/A")
 
         for num in range(2, int(maxNum)):
             # page_url 为每张图片所在的页面地址
@@ -39,11 +34,10 @@ class HotGirlPicSpider(CrawlSpider):
         item['imgUrls'] = self.img_urls
         yield item
 
-
-
     def img_url(self, response, ):
         selector = Selector(response)
         imgUrl = selector.xpath('//div[@class="content-pic"]/a/img/@src').extract_first(default="N/A")
+
         self.img_urls.append(imgUrl)
 
     # def parse(self, response):

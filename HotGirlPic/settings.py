@@ -55,14 +55,12 @@ DEFAULT_REQUEST_HEADERS = {
     # 'If-Modified-Since':'Fri, 24 Nov 2017 11:49:33 GMT'
 }
 
-#mac
-    #     imagePath = '/Volumes/D/HotGirlPic/%s/%s.jpg' % (item['name'][0],imageName)
-    #     foldUrl = '/Volumes/D/HotGirlPic/%s' % (item['name'][0])
+        #mac
+    #     foldUrl = '/Volumes/D/HotGirlPic/
     #
     #     #windows
-    #     # imagePath = 'J:\HotGirlPic\%s\%s.jpg' % (item['name'][0], imageName)
-    #     # foldUrl = 'J:\HotGirlPic\%s' % (item['name'][0])
-IMAGES_STORE = '/Volumes/D/HotGirlPic/'
+    #     # foldUrl = 'J:\HotGirlPic\
+IMAGES_STORE = 'J:\HotGirlPic\\'
 IMAGES_EXPIRES = 30
 
 # Enable or disable spider middlewares
@@ -109,3 +107,5 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# LOG_ENABLED = False
+LOG_LEVEL = 'WARNING'

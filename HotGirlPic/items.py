@@ -11,6 +11,7 @@ from scrapy.item import Item,Field
 class HotgirlItem(Item):
     # define the fields for your item here like:
     name = Field()
-    imgUrl = Field()
+    url = Field()
+    imgUrls = Field()
 
     pass

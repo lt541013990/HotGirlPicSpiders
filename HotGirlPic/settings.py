@@ -15,10 +15,10 @@ SPIDER_MODULES = ['HotGirlPic.spiders']
 NEWSPIDER_MODULE = 'HotGirlPic.spiders'
 
 REDIRECT_ENABLED = False
-HTTPERROR_ALLOWED_CODES = [304,]
+HTTPERROR_ALLOWED_CODES = [304,302]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'HotGirlPic (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -29,14 +29,14 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+# DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
-COOKIES_DEBUG = True
+COOKIES_DEBUG = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -51,9 +51,19 @@ DEFAULT_REQUEST_HEADERS = {
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
     'Upgrade-Insecure-Requests':'1',
-    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36',
+    # 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36',
     # 'If-Modified-Since':'Fri, 24 Nov 2017 11:49:33 GMT'
 }
+
+#mac
+    #     imagePath = '/Volumes/D/HotGirlPic/%s/%s.jpg' % (item['name'][0],imageName)
+    #     foldUrl = '/Volumes/D/HotGirlPic/%s' % (item['name'][0])
+    #
+    #     #windows
+    #     # imagePath = 'J:\HotGirlPic\%s\%s.jpg' % (item['name'][0], imageName)
+    #     # foldUrl = 'J:\HotGirlPic\%s' % (item['name'][0])
+IMAGES_STORE = '/Volumes/D/HotGirlPic/'
+IMAGES_EXPIRES = 30
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
@@ -63,9 +73,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'HotGirlPic.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'HotGirlPic.middlewares.HotgirlpicSpiderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -75,9 +85,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'HotGirlPic.pipelines.HotgirlpicPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'HotGirlPic.pipelines.HotgirlpicPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

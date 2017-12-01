@@ -51,7 +51,7 @@ class HotGirlPicSpider(CrawlSpider):
         if len(item['imgUrls']) == int(maxNum1) - 1:
             # print('最后一个了')
             self.lock.release()
-            print(item['name'] + 'img数量' + str(len(item['imgUrls'])))
+            # print(item['name'] + 'img数量' + str(len(item['imgUrls'])))
             yield item
         else:
             self.lock.release()

@@ -11,17 +11,15 @@ from scrapy.exceptions import DropItem
 import re
 import os
 
+
 class HotgirlpicPipeline(ImagesPipeline):
-
-
     def file_path(self, request, response=None, info=None):
         item = request.meta['item']
         folder = item['name']
         folder_strip = folder
         image_guid = request.url.split('/')[-1]
         filename = u'清纯/{0}/{1}'.format(folder_strip, image_guid)
-        # if not os.path.exists(filename):
-            # print(filename + "is new")
+
         return filename
 
     def get_media_requests(self, item, info):
@@ -40,6 +38,7 @@ class HotgirlpicPipeline(ImagesPipeline):
         if not image_paths:
             raise DropItem("Item contains no images")
         return item
+
 
 def strip(path):
     """

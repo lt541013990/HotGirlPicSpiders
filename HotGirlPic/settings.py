@@ -60,7 +60,7 @@ DEFAULT_REQUEST_HEADERS = {
     #
     #     #windows
     #     # foldUrl = 'J:\HotGirlPic\
-IMAGES_STORE = 'J:\HotGirlPic\\'
+IMAGES_STORE = '/Volumes/D/HotGirlPic/'
 IMAGES_EXPIRES = 30
 
 # Enable or disable spider middlewares
@@ -108,4 +108,4 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 # LOG_ENABLED = False
-LOG_LEVEL = 'WARNING'
+LOG_LEVEL = 'INFO'

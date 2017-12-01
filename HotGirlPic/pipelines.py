@@ -20,8 +20,8 @@ class HotgirlpicPipeline(ImagesPipeline):
         folder_strip = folder
         image_guid = request.url.split('/')[-1]
         filename = u'清纯/{0}/{1}'.format(folder_strip, image_guid)
-        if not os.path.exists(filename):
-            print(filename + "是新的")
+        # if not os.path.exists(filename):
+            # print(filename + "is new")
         return filename
 
     def get_media_requests(self, item, info):

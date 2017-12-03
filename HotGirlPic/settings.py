@@ -60,7 +60,7 @@ DEFAULT_REQUEST_HEADERS = {
     #
     #     #windows
     #     # foldUrl = 'J:\HotGirlPic\
-IMAGES_STORE = '/Volumes/D/HotGirlPic/'
+IMAGES_STORE = 'J:\HotGirlPic\\'
 IMAGES_EXPIRES = 30
 
 # Enable or disable spider middlewares

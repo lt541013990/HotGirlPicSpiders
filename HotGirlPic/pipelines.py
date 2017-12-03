@@ -18,7 +18,7 @@ class HotgirlpicPipeline(ImagesPipeline):
         folder = item['name']
         folder_strip = folder
         image_guid = request.url.split('/')[-1]
-        filename = u'清纯/{0}/{1}'.format(folder_strip, image_guid)
+        filename = u'{0}/{1}/{2}'.format(item['category'], folder_strip, image_guid)
 
         return filename
 

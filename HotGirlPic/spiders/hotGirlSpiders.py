@@ -12,10 +12,25 @@ import threading
 
 class HotGirlPicSpider(CrawlSpider):
     name = "HotGirlPic"
-    start_urls = ["http://www.mm131.com/qingchun/"]
+    start_urls = ["http://www.mm131.com/qingchun/","http://www.mm131.com/xinggan/","http://www.mm131.com/xiaohua/","http://www.mm131.com/chemo/","http://www.mm131.com/qipao/","http://www.mm131.com/mingxing/"]
     rules = (
         Rule(LinkExtractor(allow=('http://www.mm131.com/qingchun/\d{4,4}',),
                            deny=('http://www.mm131.com/qingchun/\d{1,6}_\d{1,2}')),
+             callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('http://www.mm131.com/xinggan/\d{4,4}',),
+                           deny=('http://www.mm131.com/xinggan/\d{1,6}_\d{1,2}')),
+             callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('http://www.mm131.com/xiaohua/\d{4,4}',),
+                           deny=('http://www.mm131.com/xiaohua/\d{1,6}_\d{1,2}')),
+             callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('http://www.mm131.com/chemo/\d{4,4}',),
+                           deny=('http://www.mm131.com/chemo/\d{1,6}_\d{1,2}')),
+             callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('http://www.mm131.com/qipao/\d{4,4}',),
+                           deny=('http://www.mm131.com/qipao/\d{1,6}_\d{1,2}')),
+             callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('http://www.mm131.com/mingxing/\d{4,4}',),
+                           deny=('http://www.mm131.com/mingxing/\d{1,6}_\d{1,2}')),
              callback='parse_item', follow=True),
     )
     lock = threading.Lock()
@@ -28,12 +43,11 @@ class HotGirlPicSpider(CrawlSpider):
         item['name'] = selector.xpath('//div[@class="content"]/h5/text()').extract_first(default="N/A")
         item['url'] = response.url
         item['imgUrls'] = []
-
+        item['category'] = selector.xpath('//div[@class="place"]/a//text()').extract()[1]
         for num in range(2, int(maxNum) + 1):
             # page_url 为每张图片所在的页面地址
             url = response.url
             page_url = url.replace('.html', '') + '_' + str(num) + '.html'
-
             yield scrapy.Request(page_url, meta={'item': item, 'num': str(num), 'maxNum': maxNum},
                                  callback=self.img_url)
 
@@ -41,7 +55,7 @@ class HotGirlPicSpider(CrawlSpider):
         self.lock.acquire()
         selector = Selector(response)
         imgUrl = selector.xpath('//div[@class="content-pic"]/a/img/@src').extract_first(default="N/A")
-        num1 = response.meta['num']
+        # num1 = response.meta['num']
         maxNum1 = response.meta['maxNum']
         item = response.meta['item']
 
